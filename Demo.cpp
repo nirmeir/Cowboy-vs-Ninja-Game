@@ -10,19 +10,17 @@
 #include <sstream>
 #include <stdexcept>
 #include <cassert>
-#include <string>
-#include "Character.hpp"
-#include "Cowboy.hpp"
-#include "YoungNinja.hpp"
-#include "OldNinja.hpp"
-#include "TrainedNinja.hpp"
-#include "Team.hpp"
-#include "Point.hpp"
-
-
 using namespace std;
 
 #include "sources/Team.hpp" //no need for other includes
+#include "sources/Cowboy.hpp"
+#include "sources/YoungNinja.hpp"
+#include "sources/TrainedNinja.hpp"
+#include "sources/OldNinja.hpp"
+#include "sources/Point.hpp"
+#include "sources/Character.hpp"
+
+   
 
 using namespace ariel;
 
@@ -35,21 +33,27 @@ int main() {
     tom->shoot(sushi);
     cout << tom->print() <<endl;
 
+   bool x = typeid(*sushi) == typeid(OldNinja);
+
+
     sushi->move(tom);
     sushi->slash(tom);
 
     Team team_A(tom); 
     team_A.add(new YoungNinja("Yogi", Point(64,57)));
-
     // Team b(tom); should throw tom is already in team a
 
      Team team_B(sushi);
      team_B.add(new TrainedNinja("Hikari", Point(12,81)));
 
+     
 
      while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){
+
+
         team_A.attack(&team_B);
         team_B.attack(&team_A);
+
         team_A.print();
         team_B.print();
      }

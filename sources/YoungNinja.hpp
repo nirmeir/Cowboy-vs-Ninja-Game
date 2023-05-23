@@ -12,14 +12,13 @@ namespace ariel
         int speed;
 
     public:
-        YoungNinja(string name, ariel::Point location) : Character(name, location, 100),speed(14)
+        YoungNinja(string name, ariel::Point location) : Character(name, location, 100), speed(14)
         {
         }
 
-        void move (Character &other);         
-        void slash(Character &other);        
-    
+        void move(Character *other);
 
-        
+        void slash(Character *other);
+        bool is_close(Character *other);
     };
 }

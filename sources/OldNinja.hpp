@@ -18,7 +18,8 @@ namespace ariel
 
         void move (Character *other);        
         void slash(Character *other);         
-        
+        bool is_close(Character *other);
+  
 
         
     };
