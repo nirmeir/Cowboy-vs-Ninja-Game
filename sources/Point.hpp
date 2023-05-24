@@ -14,43 +14,42 @@ namespace ariel
     {
 
     private:
-        double x;
-        double y;
+        double x_cordinate;
+        double y_cordinate;
 
     public:
-        Point(double x, double y)
+        Point(double _xcordinate, double _ycordinate): x_cordinate(_xcordinate), y_cordinate(_ycordinate) //NOLINT
         {
-            this->x = x;
-            this->y = y;
+    
         }
 
-        double distance(Point other)
+        double distance(Point other) const
         {
-            double dx = x - other.x;
-            double dy = y - other.y;
-            return std::sqrt(dx * dx + dy * dy);
+            double distx = x_cordinate - other.x_cordinate;
+            double disty = y_cordinate - other.y_cordinate;
+            return std::sqrt(distx * distx + disty * disty);
         }
       
-        double getX()
+        double getX() const
         {
-            return this->x;
+            return this->x_cordinate;
         }
-        double getY()
+        double getY() const
         {
-            return this->y;
+            return this->y_cordinate;
         }
-        void setX(double x)
+        void setX(double _x_cordinate)
         {
-            this->x = x;
+            this->x_cordinate = _x_cordinate;
         }
-        void setY(double y)
+        void setY(double _y_cordinate)
         {
-            this->y = y;
+            this->y_cordinate = _y_cordinate;
         }
 
-        string print()
+        string print() const
         {
-            return "(" + to_string(this->x) + "," + to_string(this->y) + ")";
+            return "(" + to_string(this->x_cordinate) + "," + to_string(this->y_cordinate) + ")";
         }
 
         static Point moveTowards(Point src, Point dst, double distance);

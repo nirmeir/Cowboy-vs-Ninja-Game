@@ -9,10 +9,12 @@ namespace ariel
     class YoungNinja : public Character
     {
     private:
+        static const int MAX_HEALTH = 100;
+        static const int MAX_SPEED = 14;
         int speed;
 
     public:
-        YoungNinja(string name, ariel::Point location) : Character(name, location, 100), speed(14)
+        YoungNinja(string name, ariel::Point location) : Character(std::move(name), location, MAX_HEALTH), speed(MAX_SPEED)
         {
         }
 

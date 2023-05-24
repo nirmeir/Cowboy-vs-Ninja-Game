@@ -17,40 +17,49 @@ namespace ariel
     {
 
     protected:
-        vector<Character*> team;
-        Character *leader;
+        vector<Character*> _team;
+        Character *_leader;
 
     public:
-        Team(Character* leader) 
+        Team(Character* leader) : _leader(nullptr) //NOLINT
         {
-            if (leader->isCaptain() == true){
-                throw runtime_error("is already captain");
-            } else {
+
+            if(!leader->isCaptain()) {
                 leader->setCaptain();
                 leader->setIsChoose();
                 this->set_leader(leader);
-                this->set_team(team);
-                
-
-                team.push_back(leader);
+                this->set_team(_team);
+                _team.push_back(leader);
 
             }
+        
+            else if (leader->isCaptain()){
+                throw runtime_error("is already captain");
+            } 
+        
+        
+            
         };
 
+        Team(const Team&) = delete;
+        Team& operator=(const Team&) = delete;
+        Team(Team&&) = delete;
+        Team& operator=(Team&&) = delete;
+
         virtual vector<Character*> get_team() {
-            return this->team;
+            return this->_team;
         };
 
         virtual Character* get_leader() {
-            return this->leader;
+            return this->_leader;
         };
 
         virtual void set_leader(Character* leader) {
-            this->leader = leader;
+            this->_leader = leader;
         }
 
         virtual void set_team(vector<Character*> team) {
-            this->team = team;
+            this->_team = team;
             }
 
 
@@ -62,9 +71,8 @@ namespace ariel
 
 
 
-        ~Team(){
+        virtual ~Team() = default;
 
-        };
     };
 
 }

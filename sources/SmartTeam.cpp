@@ -20,7 +20,7 @@ using namespace ariel;
 
 void SmartTeam::add(Character *other)
 {
-    if(this->team.size() == 10) {
+    if(this->_team.size() == 10) {
         throw runtime_error("Team is full");
     }
     else if(other -> getIsChoose() == true){
@@ -28,7 +28,7 @@ void SmartTeam::add(Character *other)
     }
     else{
 
-    this->team.push_back(other);
+    this->_team.push_back(other);
     other->setIsChoose();
     }
 }

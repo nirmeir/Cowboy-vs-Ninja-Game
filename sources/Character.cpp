@@ -12,24 +12,24 @@ using namespace std;
 using namespace ariel;
 
 
-        int Character::getHealth() {
+        int Character::getHealth() const{
             return this->health;
         }
 
-        bool Character::isAlive(){
+        bool Character::isAlive() const{
             return this->health > 0;
         }
         
         //function that calculate the distance between two points
-        double Character::distance(const ariel::Character *other){
+        double Character::distance(const ariel::Character *other) {
             return this->location.distance(other->location);
         }
 
-        void Character::hit(int hp){
-        if (hp<0){
+        void Character::hit(int health){
+        if (health<0){
             throw invalid_argument("hp must be positive");
         }
-            this->health -= hp;
+            this->health -= health;
         }
         
 

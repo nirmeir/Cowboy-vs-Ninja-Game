@@ -21,62 +21,20 @@ using namespace ariel;
 
 void Team::add(Character *other)
 {
-    if(team.size() == 10) {
+    if(_team.size() == 10) {
         throw runtime_error("Team is full");
     }
-    else if(other -> getIsChoose() == true){
+    else if(other -> getIsChoose() ){
         throw runtime_error("Character is already in a team");
     }
     else{
 
-    team.push_back(other);
+    _team.push_back(other);
     other->setIsChoose();
     }
 }
 
 
-// Character* Team::get_target(Team *other) {
-
-//     Character *target1 = new Character();
-//     Character *target2 = new Character();
-
-//     double closet = std::numeric_limits<double>::max();
-
-//     for (Character* c : other->get_team())
-//     {
-//         if (c->isAlive() && typeid(*c) == typeid(Cowboy) )
-//         {
-//             double temp = this->leader->distance(c);
-//             if (closet > temp)
-//             {
-//                 closet = temp;
-//                 target1 = c;
-//             }
-//         }
-//     }
-
-//     double closet2 = std::numeric_limits<double>::max();
-//     for (Character* c : other->get_team()) {
-
-//         if (c->isAlive() && typeid(*c) != typeid(Cowboy) )
-//         {
-//             double temp = this->leader->distance(c);
-//             if (closet2 > temp)
-//             {
-//                 closet2 = temp;
-//                 target2 = c;
-//             }
-//         }
-//     }
-
-//     if(this->get_leader()->distance(target1) < this->get_leader()->distance(target2)  ){
-//         return target1;
-//     }
-//     else{
-//         return target2;
-//     }
-    
-// }
 
 Character* Team::get_target(Team *other) {
 
@@ -114,17 +72,17 @@ void Team::attack(Team *other)
     }
 
 
-    else if (this->leader->isAlive() == false)
+    else if (this->_leader->isAlive() == false)
     {
         Character *new_leader = new Character();
         double location = std::numeric_limits<double>::max();
 
-        for (Character* c : this->team)
+        for (Character* c : this->_team)
         {
             if (c -> isAlive())
             {
                 
-                double temp = this->leader->distance(c);
+                double temp = this->_leader->distance(c);
                 if (location > temp)
                 {
                     location = temp;
@@ -141,7 +99,7 @@ void Team::attack(Team *other)
 
 
 
-    for (Character *c : this->team)
+    for (Character *c : this->_team)
     {
         
         if (this ->stillAlive() == 0 || other->stillAlive() == 0)
@@ -229,14 +187,14 @@ int Team::stillAlive()
 void Team::print()
 {
 
-    for (Character* c : this->team)
+    for (Character* c : this->_team)
     {
         if(typeid(*c) == typeid(Cowboy)){
  
             cout<< c->print()<< endl;
         }
     }
-    for (Character* c : this->team)
+    for (Character* c : this->_team)
     {
 
         if(typeid(*c) != typeid(Cowboy)){

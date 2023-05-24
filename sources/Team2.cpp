@@ -20,7 +20,7 @@ using namespace ariel;
 
 void Team2::add(Character *other)
 {
-    if(this->team.size() == 10) {
+    if(this->_team.size() == 10) {
         throw runtime_error("Team is full");
     }
     else if(other -> getIsChoose() == true){
@@ -28,7 +28,7 @@ void Team2::add(Character *other)
     }
     else{
 
-    this->team.push_back(other);
+    this->_team.push_back(other);
     other->setIsChoose();
     }
 }
@@ -112,7 +112,7 @@ void Team2::attack(Team *other)
         if (target->isAlive() == false)
         {
             target = this->get_target(other);
-            other -> set_leader(target);
+            // other -> set_leader(target);
         }
 
         if (typeid(*c) == typeid(Cowboy) && c->isAlive()) {
@@ -123,6 +123,7 @@ void Team2::attack(Team *other)
         }
 
         else if (typeid(*c) == typeid(YoungNinja)) {
+            
             if(c->isAlive() == false) {
                 break;;
             }

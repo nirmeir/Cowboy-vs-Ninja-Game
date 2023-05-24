@@ -11,10 +11,12 @@ namespace ariel
     {
 
     private:
+        static const int MAX_HEALTH = 110;
+        static const int MAX_BULLETS = 6;
         int bullets;
 
     public:
-        Cowboy(string name, ariel::Point location) : Character(name, location, 110), bullets(6)
+        Cowboy(string name, ariel::Point location) : Character(std::move(name), location, MAX_HEALTH), bullets(MAX_BULLETS)
         {
         }
 

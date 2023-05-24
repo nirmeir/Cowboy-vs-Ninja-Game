@@ -20,19 +20,25 @@ namespace ariel
 
         Team2(Character *leader): Team(leader){}
 
+
+        Team2(const Team2&) = delete;
+        Team2& operator=(const Team2&) = delete;
+        Team2(Team2&&) = delete;
+        Team2& operator=(Team2&&) = delete;
+
         vector<Character*> get_team() override {
-            return this->team;
+            return this->_team;
         };
 
         Character* get_leader()override {
-            return this->leader;
+            return this->_leader;
         };
 
         void set_leader(Character* leader) override{
-            this->leader = leader;
+            this->_leader = leader;
         }
          void set_team(vector<Character*> team)override {
-            this->team = team;
+            this->_team = team;
             }
 
          void add(Character *other) override;
@@ -44,9 +50,9 @@ namespace ariel
 
         
 
-        ~Team2(){
+        ~Team2() override = default ;
 
-        };
+        
     };
 
     

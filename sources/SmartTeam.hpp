@@ -11,28 +11,33 @@ using namespace std;
 namespace ariel
 {
 
-    class SmartTeam : public Team
+    class SmartTeam : public Team   //NOLINT
     {
 
 
     public:
         using Team::attack;
 
-        SmartTeam(Character *leader): Team(leader){}
+        SmartTeam(Character *leader): Team(leader) {} 
+        SmartTeam(const SmartTeam&) = delete;
+        SmartTeam& operator=(const SmartTeam&) = delete;
+        SmartTeam(SmartTeam&&) = delete;
+        SmartTeam& operator=(SmartTeam&&) = delete;
+
 
         vector<Character*> get_team() override {
-            return this->team;
+            return this->get_team();
         };
 
         Character* get_leader()override {
-            return this->leader;
+            return this->get_leader();
         };
 
         void set_leader(Character* leader) override{
-            this->leader = leader;
+            this->set_leader(leader);
         }
          void set_team(vector<Character*> team)override {
-            this->team = team;
+            this->set_team(team);
             }
 
          void add(Character *other) override;
@@ -47,9 +52,8 @@ namespace ariel
 
         
 
-        ~SmartTeam(){
+        ~SmartTeam() override = default;
 
-        };
     };
 
     
